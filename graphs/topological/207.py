@@ -17,8 +17,8 @@ class Solution:
             adj[i] = []
 
         # populate adjacency matrix
-        for pre in prerequisites:
-            adj[pre[1]].append(pre[0])
+        for crs, pre in prerequisites:
+            adj[crs].append(pre) # prereqs go before
 
         path = []
 
@@ -33,9 +33,9 @@ class Solution:
             
             for neighbors in adj[src]:
                 if not dfs(neighbors): return False # stop and return false
-                path.pop()
-                adj[src] = [] # do not dfs again on src
-                return True
+            path.pop()
+            adj[src] = [] # do not dfs again on src
+            return True
 
 
         # call dfs
@@ -43,9 +43,4 @@ class Solution:
             if not dfs(i): return False # stop and return false
 
         return True
-
-
-
-
-
-         
+   
