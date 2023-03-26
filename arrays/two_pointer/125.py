@@ -7,13 +7,21 @@ Given a string s, return true if it is a palindrome, or false otherwise.
 
 class Solution:
     def isPalindrome(self, s: str) -> bool:
-        s = s.lower()
-        print(len(s))
+        L, R = 0, len(s) - 1
 
-        for i in range(len(s)):
-            print(i)
-            if ord(s[i]) < 96 or ord(s[i]) > 122:
-                s = s[:i] + s[(i+1):]
-            print(s)
-        s.replace(' ', '')
-        print(s)
+        while L < R:
+            while L < R and not self.alphaNum(s[L]): # move until alphaNum
+                L += 1
+            while R > L and not self.alphaNum(s[R]): # move until alphaNum
+                R -= 1
+
+            if s[L].lower() != s[R].lower(): # check palindrome
+                return False
+            L, R = L + 1, R - 1
+
+        return True
+
+    def alphaNum(self, c): # checks if char is letter or number
+        return (ord('A') <= ord(c) <= ord('Z') or 
+                ord('a') <= ord(c) <= ord('z') or 
+                ord('0') <= ord(c) <= ord('9'))
