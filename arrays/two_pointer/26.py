@@ -10,16 +10,11 @@ Do not allocate extra space for another array. You must do this by modifying the
 
 class Solution:
     def removeDuplicates(self, nums: List[int]) -> int:
-        i = 0
-        j = 0
-        k = 1
-        
-        while j < len(nums):
-            if nums[i] == nums[j]: # increment j until non-dup found
-                j += 1
-            else: # overwrite i
-                i += 1
-                nums[i] = nums[j]
-                k += 1
-        
-        return k
+        l = 1 # start at second, first value always stays
+
+        for r in range(1, len(nums)):
+            if nums[r] != nums[r - 1]:
+                nums[l] = nums[r]
+                l += 1
+
+        return l # will hold the count of unique elements
