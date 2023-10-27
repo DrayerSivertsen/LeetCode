@@ -17,7 +17,7 @@ class Solution:
                 r += 1
                 count += 1
 
-            for i in range(min(2, count)):
+            for _ in range(min(2, count)):
                 nums[l] = nums[r]
                 l += 1
             r += 1
