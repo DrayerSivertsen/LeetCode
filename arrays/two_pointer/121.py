@@ -9,14 +9,16 @@ Return the maximum profit you can achieve from this transaction. If you cannot a
 
 class Solution:
     def maxProfit(self, prices: List[int]) -> int:
-        L, R = 0, 1
-        profit = 0
+        l, r = 0, 1
+        res = 0
 
-        while R < len(prices):
-            if prices[R] < prices[L]: # update L to lowest val seen
-                L = R
+        while r < len(prices):
+            if prices[r] < prices[l]:
+                l = r # move L to new min
+            else:
+                profit = prices[r] - prices[l]
+                res = max(res, profit) # calc max profit
 
-            profit = max(prices[R] - prices[L], profit) # calc profit
-            R += 1
+            r += 1
 
-        return profit
+        return res
