@@ -10,4 +10,4 @@ For day to day practice I typically follow the study pattern:
 3. Record solution in Github (sometime document in knowledge share)
 4. Second attempt (on the following day)
 
-![](images/leetcode_logo.png)
+![LeetCode Stats](https://leetcode.card.workers.dev/DrayerSivertsen?theme=default&font=baloo&extension=null)
