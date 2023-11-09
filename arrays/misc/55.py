@@ -2,6 +2,19 @@
 
 """
 
+
+class Solution:
+    def canJump(self, nums: List[int]) -> bool:
+        goal = len(nums) - 1
+
+        for i in range(len(nums) - 1, -1, -1):
+            if i + nums[i] >= goal:
+                goal = i
+
+        return True if goal == 0 else False
+
+
+# My attempt
 class Solution:
     def canJump(self, nums: List[int]) -> bool:
         i, end = 0, len(nums) - 1
@@ -21,12 +34,3 @@ class Solution:
         return False
 
 
-class Solution:
-    def canJump(self, nums: List[int]) -> bool:
-        goal = len(nums) - 1
-
-        for i in range(len(nums) - 1, -1, -1):
-            if i + nums[i] >= goal:
-                goal = i
-
-        return True if goal == 0 else False

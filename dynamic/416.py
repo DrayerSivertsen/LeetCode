@@ -23,7 +23,7 @@ class Solution:
 
 
 
-        
+# My attempt
 class Solution:
     def canPartition(self, nums: list[int]) -> bool:
         if sum(nums) % 2:
@@ -34,7 +34,6 @@ class Solution:
         def dfsHelper(i, arr, nums):
             print(arr, nums)
             if target == sum(nums):
-                print('here')
                 return True
 
             if i >= len(nums):
