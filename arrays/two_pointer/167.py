@@ -11,16 +11,16 @@ Your solution must use only constant extra space.
 
 class Solution:
     def twoSum(self, numbers: List[int], target: int) -> List[int]:
-        res = []
-        R, L = len(numbers)-1, 0
-        
-        while numbers[L] + numbers[R] != target:
-            if numbers[L] + numbers[R] > target: # decrease sum
-                R -= 1
-            elif numbers[L] + numbers[R] < target: # increase sum
-                L += 1
+        l, r = 0, len(numbers) - 1
 
-        res.append(L+1)
-        res.append(R+1)
+        while l < r:
+            curSum = numbers[l] + numbers[r]
 
-        return res
+            if curSum < target:
+                l += 1
+            elif curSum > target:
+                r -= 1
+            else:
+                return [l + 1, r + 1]
+
+        return []
