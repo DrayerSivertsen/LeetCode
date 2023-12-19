@@ -7,7 +7,7 @@
   <img src="https://leetcode-badge-showcase.vercel.app/api?username=DrayerSivertsen&theme=light" alt="LeetCode Badges" style="max-width: 100%;"/>
 </p>
 
-# Study Info
+## Study Info
 
 Documenting the solutions I would like to remember for leetcode questions I have solved. 
 
