@@ -9,16 +9,16 @@ Return the maximum amount of water a container can store.
 
 class Solution:
     def maxArea(self, height: List[int]) -> int:
-        L, curArea, res = 0, 0, 0
-        R = len(height)-1
+        l, r = 0, len(height) - 1
+        res = 0
 
-        while L < R:
-            curArea = min(height[L], height[R]) * (R-L) # calc area
-            res = max(res, curArea) # save max
+        while l < r:
+            area = (r - l) * min(height[l], height[r])
+            res = max(res, area)
 
-            if (height[L] < height[R]): # move pointer with lower height
-                L += 1
+            if height[l] < height[r]:
+                l += 1
             else:
-                R -= 1
-            
+                r -= 1
+        
         return res
