@@ -6,18 +6,18 @@ Here follow means a full match, such that there is a bijection between a letter 
 
 class Solution:
     def wordPattern(self, pattern: str, s: str) -> bool:
-        mapPS, mapSP = {}, {}
+        charToWord, wordToChar = {}, {}
         words = s.split(' ')
 
         if len(pattern) != len(words):
             return False
         
-        for c, word in zip(pattern, words):
-            if ((c in mapPS and mapPS[c] != word) or 
-                (word in mapSP and mapSP[word] != c)):
+        for c, w in zip(pattern, words):
+            if ((c in charToWord and charToWord[c] != w) or 
+                (w in wordToChar and wordToChar[w] != c)):
                 return False
             
-            mapPS[c] = word
-            mapSP[word] = c
+            charToWord[c] = w
+            wordToChar[w] = c
 
         return True
