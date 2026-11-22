@@ -247,3 +247,310 @@ int main()
     printf("%.1f\n", float1 - float2);
     return 0;
 }
+
+/*
+
+In this challenge, you will learn the usage of the for loop, which is a programming
+language statement which allows code to be executed until a terminal condition is
+met. They can even repeat forever if the terminal condition is never met.
+
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+
+
+int main() 
+{
+    int a, b;
+    scanf("%d\n%d", &a, &b);
+  	for (int i = a; i < b + 1; i++) {
+        if (i >=1 && i <= 9) {
+            if (i == 1) {
+                printf("one\n");
+            } else if (i == 2) {
+                printf("two\n");
+            } else if (i == 3) {
+                printf("three\n");
+            } else if (i == 4) {
+                printf("four\n");
+            } else if (i == 5) {
+                printf("five\n");
+            } else if (i == 6) {
+                printf("six\n");
+            } else if (i == 7) {
+                printf("seven\n");
+            } else if (i == 8) {
+                printf("eight\n");
+            } else if (i == 9) {
+                printf("nine\n");
+            }
+
+        } else {
+            if (i % 2 == 0) {
+                printf("even\n");
+            } else {
+                printf("odd\n");
+            }
+        }
+    }
+
+    return 0;
+}
+
+/*
+
+Given a five digit integer, print the sum of its digits.
+
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+	
+    int n;
+    int sum = 0;
+    scanf("%d", &n);
+    while (n > 0) {
+        sum += (n % 10);
+        n /= 10;
+    }
+
+    printf("%d\n", sum);
+
+    return 0;
+}
+
+/*
+
+In this challenge, you will use logical bitwise operators. 
+
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+//Complete the following function.
+
+
+void calculate_the_maximum(int n, int k) {
+    int and_max = 0;
+    int and = 0;
+    int or_max = 0;
+    int or = 0;
+    int xor_max = 0;
+    int xor = 0;
+
+    for (int i = 1; i <= n; i++) {
+        for (int j = i + 1; j <= n; j++) {
+            and = i & j;
+            if (and > and_max && and < k) {
+                and_max = and;
+            }
+            
+            or = i | j;
+            if (or > or_max && or < k) {
+                or_max = or;
+            }
+            
+            xor = i ^ j;
+            if (xor > xor_max && xor < k) {
+                xor_max = xor;
+            }
+        }
+    }
+    
+    printf("%d\n", and_max);
+    printf("%d\n", or_max);
+    printf("%d\n", xor_max);
+  
+}
+
+int main() {
+    int n, k;
+  
+    scanf("%d %d", &n, &k);
+    calculate_the_maximum(n, k);
+ 
+    return 0;
+}
+
+/*
+
+Print a pattern of numbers from  to  as shown below. Each of the numbers is separated by a single space.
+
+                            4 4 4 4 4 4 4  
+                            4 3 3 3 3 3 4   
+                            4 3 2 2 2 3 4   
+                            4 3 2 1 2 3 4   
+                            4 3 2 2 2 3 4   
+                            4 3 3 3 3 3 4   
+                            4 4 4 4 4 4 4   
+
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() 
+{
+
+    int n;
+    scanf("%d", &n);
+    int size = 0;
+
+    size = (n * 2) - 1;
+    for (int i = 1; i < size + 1; i++) {
+        for (int j = 1; j < size + 1; j++) {
+            printf("%d ", ((int)fmax(abs(n - i), abs(n - j))) + 1);
+        }
+        
+        printf("\n");
+    }
+    
+    
+    return 0;
+}
+
+/*
+
+In this challenge, create an array of size  dynamically, and read the values
+from stdin. Iterate the array calculating the sum of all elements. Print the
+sum and free the memory where the array is stored.
+
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+
+    int n = 0;
+    int sum = 0;
+    int *arr;
+
+    scanf("%d", &n);
+    scanf("\n");
+    arr = (int*)malloc(sizeof(int) * n);
+    
+    for (int i = 0; i < n; i++) {
+        scanf("%d", &arr[i]);
+        sum += arr[i];
+    }
+    
+    printf("%d\n", sum);
+    
+    return 0;
+}
+
+/*
+
+Given an array, of size n, reverse it.
+
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main()
+{
+    int num, *arr, i;
+    int j = 0;
+    int k = 0;
+    int tmp;
+    
+    scanf("%d", &num);
+    arr = (int*) malloc(num * sizeof(int));
+    for(i = 0; i < num; i++) {
+        scanf("%d", arr + i);
+    }
+
+    k = num - 1;
+    while (j < k) {
+        tmp = arr[j];
+        arr[j] = arr[k];
+        arr[k] = tmp;
+        k--;
+        j++;
+    }
+
+
+    for(i = 0; i < num; i++)
+        printf("%d ", *(arr + i));
+    return 0;
+}
+
+/*
+
+Given a sentence, s, print each word of the sentence in a new line.
+
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+
+    char *s;
+    char *token;
+    s = malloc(1024 * sizeof(char));
+    scanf("%[^\n]", s);
+    s = realloc(s, strlen(s) + 1);
+    
+    token = strtok(s, " ");
+    while(token != NULL) {
+        printf("%s\n", token);
+        token = strtok(NULL, " ");
+    }
+    
+    return 0;
+}
+
+/*
+
+Given a string, s, consisting of alphabets and digits, find the frequency of each digit in the given string.
+
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int main() {
+    char *s;
+    int i = 0;
+    int arr[10] = { 0 };
+    int num;
+    
+    s = (char*)malloc(sizeof(char) * 1000);
+    memset(s, 0, 1000);
+    scanf("%s", s);
+    while (s[i] != '\0') {
+        num = s[i] - '0';
+        if (num >= 0 && num <= 9) {
+            arr[num] += 1;
+        }
+
+        i++;
+    }
+    
+    for (i = 0; i < 10; i++) {
+        printf("%d ", arr[i]);
+    }
+    
+    return 0;
+}
