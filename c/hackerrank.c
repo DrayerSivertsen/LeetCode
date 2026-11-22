@@ -554,3 +554,218 @@ int main() {
     
     return 0;
 }
+
+/*
+
+Snow Howler is the librarian at the central library of the city of HuskyLand. He must handle requests which come in the following forms:
+
+1 x y : Insert a book with  pages at the end of the  shelf.
+
+2 x y : Print the number of pages in the  book on the  shelf.
+
+3 x : Print the number of books on the  shelf.
+
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+
+/*
+ * This stores the total number of books in each shelf.
+ */
+int* total_number_of_books;
+
+/*
+ * This stores the total number of pages in each book of each shelf.
+ * The rows represent the shelves and the columns represent the books.
+ */
+int** total_number_of_pages;
+
+int main()
+{
+    int total_number_of_shelves;
+    scanf("%d", &total_number_of_shelves);
+    
+    total_number_of_books = calloc(total_number_of_shelves, sizeof(int));
+    total_number_of_pages = malloc(sizeof(int*) * total_number_of_shelves);
+    for (int i = 0; i < total_number_of_shelves; i++) {
+        total_number_of_pages[i] = NULL;
+    }
+    
+    int total_number_of_queries;
+    scanf("%d", &total_number_of_queries);
+    
+    while (total_number_of_queries--) {
+        int type_of_query;
+        scanf("%d", &type_of_query);
+        
+        if (type_of_query == 1) {
+            int x, y;
+            int last_book;
+            int *shelf;
+            scanf("%d %d", &x, &y);
+            last_book = *(total_number_of_books + x);
+            shelf = *(total_number_of_pages + x);
+            shelf = realloc(shelf, sizeof(int) * (last_book + 1));
+            *(shelf + last_book) = y;
+            *(total_number_of_pages + x) = shelf; // realloc could have moved pointer so save to original.
+            *(total_number_of_books + x) += 1;
+
+        } else if (type_of_query == 2) {
+            int x, y;
+            scanf("%d %d", &x, &y);
+            printf("%d\n", *(*(total_number_of_pages + x) + y));
+        } else {
+            int x;
+            scanf("%d", &x);
+            printf("%d\n", *(total_number_of_books + x));
+        }
+    }
+
+    if (total_number_of_books) {
+        free(total_number_of_books);
+    }
+    
+    for (int i = 0; i < total_number_of_shelves; i++) {
+        if (*(total_number_of_pages + i)) {
+            free(*(total_number_of_pages + i));
+        }
+    }
+    
+    if (total_number_of_pages) {
+        free(total_number_of_pages);
+    }
+    
+    return 0;
+}
+
+/*
+
+This challenge will help you learn the concept of recursion.
+
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+//Complete the following function.
+
+int find_nth_term(int n, int a, int b, int c) {
+    if (n == 1) {
+        return a;
+    } else if (n == 2) {
+        return b;
+    } else if (n == 3) {
+        return c;
+    } else {
+        return find_nth_term(n - 1, a, b, c) + find_nth_term(n - 2, a, b, c) + find_nth_term(n - 3, a, b, c);
+    }
+}
+
+int main() {
+    int n, a, b, c;
+  
+    scanf("%d %d %d %d", &n, &a, &b, &c);
+    int ans = find_nth_term(n, a, b, c);
+ 
+    printf("%d", ans); 
+    return 0;
+}
+
+/*
+
+Complete the function, marks_summation in the editor below.
+
+marks_summation has the following parameters:
+
+int marks[number_of_students]: the marks for each student
+int number_of_students: the size of marks[]
+char gender: either 'g' or 'b'
+
+*/
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+//Complete the following function.
+
+int marks_summation(int* marks, int number_of_students, char gender) {
+    int i = 0;
+    int sum = 0;
+
+    if (gender == 'g') {
+        i = 1;
+    }
+    
+    for (; i < number_of_students; i += 2) {
+        sum += marks[i];
+    }
+    
+    return sum;
+}
+
+int main() {
+    int number_of_students;
+    char gender;
+    int sum;
+  
+    scanf("%d", &number_of_students);
+    int *marks = (int *) malloc(number_of_students * sizeof (int));
+ 
+    for (int student = 0; student < number_of_students; student++) {
+        scanf("%d", (marks + student));
+    }
+    
+    scanf(" %c", &gender);
+    sum = marks_summation(marks, number_of_students, gender);
+    printf("%d", sum);
+    free(marks);
+ 
+    return 0;
+}
+
+/*
+
+For every box from the input which has a height lesser than 41 feet, print its volume in a separate line.
+
+*/
+
+#include <stdio.h>
+#include <stdlib.h>
+#define MAX_HEIGHT 41
+
+struct box
+{
+	int length;
+    int width;
+    int height;
+};
+
+typedef struct box box;
+
+int get_volume(box b) {
+	return (b.length * b.width * b.height);
+}
+
+int is_lower_than_max_height(box b) {
+	return b.height < 41;
+}
+
+int main()
+{
+	int n;
+	scanf("%d", &n);
+	box *boxes = malloc(n * sizeof(box));
+	for (int i = 0; i < n; i++) {
+		scanf("%d%d%d", &boxes[i].length, &boxes[i].width, &boxes[i].height);
+	}
+	for (int i = 0; i < n; i++) {
+		if (is_lower_than_max_height(boxes[i])) {
+			printf("%d\n", get_volume(boxes[i]));
+		}
+	}
+	return 0;
+}
